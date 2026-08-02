@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Event Registration & Ticketing System</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="card">
+    <h1>Event Registration & Ticketing System</h1>
+
+    <form id="register-form">
+      <div class="form-row">
+        <div class="field">
+          <label for="eventSelect">Event Name</label>
+          <select id="eventSelect" required>
+            <option value="" disabled selected>Select an event</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="emailInput">Email Address</label>
+          <input type="email" id="emailInput" placeholder="participant@email.com" required />
+        </div>
+      </div>
+      <button type="submit" id="registerBtn">Register &rarr;</button>
+      <p id="form-message"></p>
+    </form>
+
+    <h2>Available Events</h2>
+    <div id="events-list">
+      <p>Loading events...</p>
+    </div>
+  </div>
+
+  <script src="config.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

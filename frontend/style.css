@@ -1,0 +1,154 @@
+:root {
+  --dark: #1a1a1a;
+  --gold: #f2a900;
+  --blue: #1f6feb;
+  --green: #1a7f37;
+  --orange: #d1591f;
+  --gray-bg: #f4f4f4;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 40px 16px;
+  background: var(--dark);
+  font-family: -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+}
+
+.card {
+  background: #ffffff;
+  border-radius: 8px;
+  padding: 32px;
+  max-width: 640px;
+  width: 100%;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+h1 {
+  font-size: 20px;
+  margin: 0 0 24px 0;
+  color: var(--dark);
+}
+
+h2 {
+  font-size: 15px;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: #555;
+  margin: 28px 0 12px 0;
+  border-bottom: 2px solid var(--gold);
+  padding-bottom: 6px;
+}
+
+.form-row {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.field {
+  flex: 1;
+  min-width: 200px;
+  margin-bottom: 16px;
+}
+
+label {
+  display: block;
+  font-size: 12px;
+  color: var(--orange);
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+select,
+input[type="email"] {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+button {
+  background: var(--blue);
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+button:hover {
+  opacity: 0.9;
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+#form-message {
+  margin-top: 10px;
+  font-size: 13px;
+}
+
+#form-message.success {
+  color: var(--green);
+}
+
+#form-message.error {
+  color: #c0392b;
+}
+
+.event-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px;
+  background: var(--gray-bg);
+  border-radius: 6px;
+  margin-bottom: 10px;
+}
+
+.event-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.event-name {
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--dark);
+}
+
+.event-date {
+  font-size: 12px;
+  color: #777;
+}
+
+.badge {
+  padding: 4px 12px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+}
+
+.badge.Available {
+  background: var(--green);
+}
+
+.badge.Limited {
+  background: var(--orange);
+}
+
+.badge.Full {
+  background: #888;
+}

@@ -1,0 +1,15 @@
+# SAM build output
+.aws-sam/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# OS/editor junk
+.DS_Store
+.vscode/
+
+# Never commit real credentials
+.env
