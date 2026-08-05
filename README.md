@@ -1,14 +1,7 @@
 # Event Registration & Ticketing System — Capstone Project Guide
+## 1. What I am actually building
 
-A complete, beginner-friendly walkthrough. No prior tech background assumed.
-Follow the sections **in order**. Each step says clearly whether **you do it manually**
-(clicking in a browser, typing a command) or whether **the code already does it for you**.
-
----
-
-## 1. What you're actually building (in plain English)
-
-Your college used **Microsoft Forms + Excel** to register people for events. You're replacing
+My college used **Microsoft Forms + Excel** to register people for events. I am replacing
 that with a system where:
 
 - A **website** shows a list of events and a registration form.
@@ -30,7 +23,7 @@ your code only when someone actually uses it, and you're only charged for that u
 ### How the pieces connect
 
 ```
-[ Your Website (HTML/JS) ]
+[ My Website (HTML/JS) ]
           |
           v  (HTTPS request)
 [ API Gateway ]  <-- the address / "front door"
@@ -49,7 +42,7 @@ Everything AWS-side is defined in **one file**: `template.yaml`. This is called
 **"Infrastructure as Code"** — instead of clicking around the AWS console to create each
 service by hand, you describe what you want in a file, and AWS builds it for you exactly
 the same way every time. This is also *why* your GitHub Actions pipeline can redeploy your
-whole system automatically.
+whole system automatically
 
 ---
 
@@ -76,9 +69,9 @@ event-registration-system/
 
 ---
 
-## 3. Prerequisites — install these first (manual)
+## 3. Prerequisites — install these first 
 
-Install all of these on your computer before starting:
+Install all of these on my computer before starting:
 
 | Tool | Why you need it | Link |
 |---|---|---|
@@ -104,7 +97,7 @@ and restart your terminal.
 
 ---
 
-## 4. Set up your AWS account access (manual)
+## 4. Set up my AWS account access 
 
 You should **never** use your AWS root account login for daily work. Instead, create an
 IAM user with the permissions you need:
@@ -324,7 +317,3 @@ Confirm the prompts. This removes every AWS resource this project created.
 - **SNS** — simple pub/sub messaging service, used here to email the organizer.
 - **AWS Budgets** — cost monitoring and alerting.
 - **GitHub Actions** — automates your deployment (the CI/CD pipeline).
-
-Good luck with your capstone — you've now got a real, production-pattern serverless system,
-not just a toy demo.
-<!-- CI/CD test --> 
