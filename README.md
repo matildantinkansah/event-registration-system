@@ -327,3 +327,4 @@ Confirm the prompts. This removes every AWS resource this project created.
 
 Good luck with your capstone — you've now got a real, production-pattern serverless system,
 not just a toy demo.
+<!-- CI/CD test --> 
