@@ -74,7 +74,8 @@ def lambda_handler(event, context):
         events_table.update_item(
             Key={"eventId": event_id},
             UpdateExpression="SET registeredCount = registeredCount + :inc",
-            ConditionExpression="registeredCount < capacity",
+            ConditionExpression="registeredCount < #cap",
+            ExpressionAttributeNames={"#cap": "capacity"},
             ExpressionAttributeValues={":inc": 1},
         )
     except ClientError as e:

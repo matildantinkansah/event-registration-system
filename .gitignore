@@ -13,3 +13,4 @@ venv/
 
 # Never commit real credentials
 .env
+samconfig.toml 
