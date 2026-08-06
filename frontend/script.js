@@ -5,7 +5,11 @@ const eventsCountEl = document.getElementById("events-count");
 const eventSelectEl = document.getElementById("eventSelect");
 const formEl = document.getElementById("register-form");
 const messageEl = document.getElementById("form-message");
+
 const registerBtn = document.getElementById("registerBtn");
+const ticketSectionEl = document.getElementById("ticket-section");
+const downloadTicketBtn = document.getElementById("downloadTicketBtn");
+let currentTicket = null;
 
 let cachedEvents = [];
 
@@ -177,6 +181,15 @@ formEl.addEventListener("submit", async (e) => {
       showMessage(data.error || "Something went wrong.", "error");
     } else {
       showMessage(`You're registered for "${data.eventName}"! Confirmation sent.`, "success");
+      const eventObj = cachedEvents.find((ev) => ev.eventId === eventId);
+      currentTicket = {
+        eventName: data.eventName,
+        eventDate: eventObj ? eventObj.eventDate : "",
+        venue: eventObj ? eventObj.venue : "",
+        email,
+        registrationId: data.registrationId || data.registrationID || data.id || "N/A",
+  };
+      showTicket(currentTicket);
       formEl.reset();
       loadEvents();
     }
@@ -218,4 +231,123 @@ function escapeHtml(str) {
   return div.innerHTML;
 }
 
+function showTicket(ticket) {
+  document.getElementById("ticketEventName").textContent = ticket.eventName;
+  document.getElementById("ticketMeta").textContent =
+    [formatDate(ticket.eventDate), ticket.venue].filter(Boolean).join(" \u2022 ");
+  document.getElementById("ticketEmail").textContent = ticket.email;
+  document.getElementById("ticketId").textContent = ticket.registrationId;
+  ticketSectionEl.hidden = false;
+  ticketSectionEl.scrollIntoView({ behavior: "smooth", block: "nearest" });
+}
+
+function roundRect(ctx, x, y, w, h, r) {
+  ctx.beginPath();
+  ctx.moveTo(x + r, y);
+  ctx.arcTo(x + w, y, x + w, y + h, r);
+  ctx.arcTo(x + w, y + h, x, y + h, r);
+  ctx.arcTo(x, y + h, x, y, r);
+  ctx.arcTo(x, y, x + w, y, r);
+  ctx.closePath();
+}
+
+function wrapText(ctx, text, x, y, maxWidth, lineHeight) {
+  const words = (text || "").split(" ");
+  let line = "";
+  let lineY = y;
+  for (const word of words) {
+    const test = line + word + " ";
+    if (ctx.measureText(test).width > maxWidth && line !== "") {
+      ctx.fillText(line, x, lineY);
+      line = word + " ";
+      lineY += lineHeight;
+    } else {
+      line = test;
+    }
+  }
+  ctx.fillText(line, x, lineY);
+}
+
+function generateTicketCanvas(ticket) {
+  const canvas = document.createElement("canvas");
+  canvas.width = 900;
+  canvas.height = 380;
+  const ctx = canvas.getContext("2d");
+
+  const grad = ctx.createLinearGradient(0, 0, 900, 380);
+  grad.addColorStop(0, "#0E4A2E");
+  grad.addColorStop(1, "#1F9257");
+  ctx.fillStyle = grad;
+  roundRect(ctx, 0, 0, 900, 380, 24);
+  ctx.fill();
+
+  ctx.fillStyle = "#ffffff";
+  roundRect(ctx, 20, 20, 620, 340, 18);
+  ctx.fill();
+
+  ctx.fillStyle = "#0E4A2E";
+  roundRect(ctx, 660, 20, 220, 340, 18);
+  ctx.fill();
+
+  ctx.fillStyle = "#F6F9F6";
+  for (let y = 40; y < 360; y += 24) {
+    ctx.beginPath();
+    ctx.arc(650, y, 6, 0, Math.PI * 2);
+    ctx.fill();
+  }
+
+  ctx.fillStyle = "#1A7A4C";
+  ctx.font = "700 14px Arial";
+  ctx.fillText("EVNT \u2022 DECK", 48, 60);
+
+  ctx.fillStyle = "#12241A";
+  ctx.font = "700 28px Arial";
+  wrapText(ctx, ticket.eventName, 48, 105, 560, 34);
+
+  ctx.fillStyle = "#667A6E";
+  ctx.font = "500 15px Arial";
+  ctx.fillText(
+    [formatDate(ticket.eventDate), ticket.venue].filter(Boolean).join(" \u2022 "),
+    48,
+    195
+  );
+
+  ctx.fillStyle = "#12241A";
+  ctx.font = "600 15px Arial";
+  ctx.fillText("Registered: " + ticket.email, 48, 225);
+
+  ctx.fillStyle = "#0E4A2E";
+  ctx.fillRect(48, 300, 90, 24);
+  ctx.fillStyle = "#A6E22E";
+  ctx.font = "700 11px Arial";
+  ctx.fillText("ADMIT ONE", 58, 316);
+
+  ctx.fillStyle = "#ffffff";
+  ctx.font = "700 12px Arial";
+  ctx.fillText("TICKET ID", 690, 60);
+  ctx.font = "700 15px monospace";
+  wrapText(ctx, ticket.registrationId, 690, 90, 160, 20);
+
+  ctx.fillStyle = "rgba(255,255,255,0.7)";
+  ctx.font = "500 11px Arial";
+  ctx.fillText("Show this at", 690, 300);
+  ctx.fillText("check-in", 690, 316);
+
+  return canvas;
+}
+
+downloadTicketBtn.addEventListener("click", () => {
+  if (!currentTicket) return;
+  const canvas = generateTicketCanvas(currentTicket);
+  canvas.toBlob((blob) => {
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `EVNTDECK-Ticket-${currentTicket.registrationId}.png`;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    URL.revokeObjectURL(url);
+    });
+  });
 loadEvents();

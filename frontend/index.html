@@ -42,8 +42,25 @@
             <input type="email" id="emailInput" placeholder="you@email.com" required />
           </div>
           <button type="submit" id="registerBtn">Register &rarr;</button>
-          <p id="form-message"></p>
         </form>
+
+        <div id="ticket-section" class="ticket-section" hidden>
+          <div class="ticket-card">
+            <div class="ticket-main">
+              <p class="ticket-brand">EVNT&bull;DECK</p>
+              <h3 id="ticketEventName"></h3>
+              <p id="ticketMeta" class="ticket-meta"></p>
+              <p id="ticketEmail" class="ticket-email"></p>
+              <p class="ticket-admit">ADMIT ONE</p>
+            </div>
+            <div class="ticket-stub">
+              <p class="ticket-id-label">Ticket ID</p>
+              <p id="ticketId" class="ticket-id"></p>
+              <p class="ticket-checkin">Show this<br />at check-in</p>
+            </div>
+          </div>
+          <button type="button" id="downloadTicketBtn">Download Ticket &darr;</button>
+        </div>
       </div>
     </section>
 

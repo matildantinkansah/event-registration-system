@@ -380,3 +380,128 @@ button#registerBtn:disabled { opacity: 0.6; cursor: not-allowed; }
   outline: 2px solid var(--green-600);
   outline-offset: 2px;
 }
+/* ---------- TICKET ---------- */
+.ticket-section {
+  margin-top: 26px;
+}
+
+.ticket-card {
+  display: flex;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 14px 30px rgba(14, 74, 46, 0.14);
+  background: #fff;
+}
+
+.ticket-main {
+  flex: 1;
+  padding: 22px 24px;
+  position: relative;
+}
+
+.ticket-main::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 0;
+  border-right: 2px dashed var(--border);
+}
+
+.ticket-brand {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 12px;
+  color: var(--green-700);
+  margin: 0 0 10px 0;
+  letter-spacing: 0.06em;
+}
+
+.ticket-main h3 {
+  font-family: var(--font-display);
+  font-size: 19px;
+  color: var(--green-900);
+  margin: 0 0 8px 0;
+}
+
+.ticket-meta {
+  font-size: 13px;
+  color: var(--muted);
+  margin: 0 0 6px 0;
+}
+
+.ticket-email {
+  font-size: 13px;
+  color: var(--ink);
+  font-weight: 600;
+  margin: 0 0 14px 0;
+}
+
+.ticket-admit {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--lime);
+  background: var(--green-900);
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 999px;
+  margin: 0;
+}
+
+.ticket-stub {
+  width: 170px;
+  background: var(--green-900);
+  color: #fff;
+  padding: 22px 18px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+}
+
+.ticket-id-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: rgba(255,255,255,0.7);
+  margin: 0 0 6px 0;
+}
+
+.ticket-id {
+  font-family: monospace;
+  font-size: 12px;
+  word-break: break-all;
+  margin: 0 0 14px 0;
+}
+
+.ticket-checkin {
+  font-size: 11px;
+  color: rgba(255,255,255,0.7);
+  margin: 0;
+  line-height: 1.4;
+}
+
+#downloadTicketBtn {
+  width: 100%;
+  margin-top: 12px;
+  background: var(--green-900);
+  color: #fff;
+  border: none;
+  padding: 13px 18px;
+  border-radius: 10px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+#downloadTicketBtn:hover { background: #082818; }
+
+@media (max-width: 500px) {
+  .ticket-card { flex-direction: column; }
+  .ticket-main::after { display: none; }
+  .ticket-stub { width: auto; }
+}
