@@ -3,36 +3,67 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Event Registration & Ticketing System</title>
+  <title>EVNT&bull;DECK &mdash; Event Registration & Ticketing</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-  <div class="card">
-    <h1>Event Registration & Ticketing System</h1>
-
-    <form id="register-form">
-      <div class="form-row">
-        <div class="field">
-          <label for="eventSelect">Event Name</label>
-          <select id="eventSelect" required>
-            <option value="" disabled selected>Select an event</option>
-          </select>
-        </div>
-        <div class="field">
-          <label for="emailInput">Email Address</label>
-          <input type="email" id="emailInput" placeholder="participant@email.com" required />
-        </div>
-      </div>
-      <button type="submit" id="registerBtn">Register &rarr;</button>
-      <p id="form-message"></p>
-    </form>
-
-    <h2>Available Events</h2>
-    <div id="events-list">
-      <p>Loading events...</p>
+  <header class="hero">
+    <nav class="topbar">
+      <span class="brand">EVNT<span class="brand-dot">&bull;</span>DECK</span>
+    </nav>
+    <div class="hero-blob hero-blob-1" aria-hidden="true"></div>
+    <div class="hero-blob hero-blob-2" aria-hidden="true"></div>
+    <div class="hero-inner">
+      <p class="eyebrow">Cloud &amp; Tech Events &mdash; Accra, Ghana</p>
+      <h1>Discover what&rsquo;s happening<br />in Ghana&rsquo;s tech scene</h1>
+      <p class="hero-sub">Browse and register for upcoming workshops, summits, and conferences &mdash; no forms, no email chains.</p>
+      <a href="#register" class="hero-cta">Register for an event &darr;</a>
     </div>
-  </div>
+  </header>
+
+  <main>
+    <section class="panel register-panel" id="register">
+      <div class="form-card">
+        <p class="eyebrow small">Quick registration</p>
+        <h2>Reserve your spot</h2>
+        <form id="register-form">
+          <div class="field">
+            <label for="eventSelect">Event</label>
+            <select id="eventSelect" required>
+              <option value="" disabled selected>Choose an event</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="emailInput">Email address</label>
+            <input type="email" id="emailInput" placeholder="you@email.com" required />
+          </div>
+          <button type="submit" id="registerBtn">Register &rarr;</button>
+          <p id="form-message"></p>
+        </form>
+      </div>
+    </section>
+
+    <section class="panel events-panel">
+      <div class="events-panel-header">
+        <div>
+          <p class="eyebrow small">Available now</p>
+          <h2>Upcoming events</h2>
+        </div>
+        <span id="events-count" class="events-count"></span>
+      </div>
+      <div id="events-list" class="events-grid">
+        <p class="loading-text">Loading events&hellip;</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <span>EVNT&bull;DECK &mdash; built on AWS serverless architecture</span>
+  </footer>
 
   <script src="config.js"></script>
   <script src="script.js"></script>

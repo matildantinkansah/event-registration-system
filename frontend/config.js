@@ -5,4 +5,4 @@
 // Paste that exact URL below, replacing the placeholder. Do NOT add a
 // trailing slash at the end.
 
-const API_BASE_URL = "https://npnw3lojw7.execute-api.us-east-1.amazonaws.com/prod";
+const API_BASE_URL =  "https://npnw3lojw7.execute-api.us-east-1.amazonaws.com/prod";

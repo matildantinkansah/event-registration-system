@@ -46,6 +46,8 @@ def lambda_handler(event, context):
                     "eventId": item.get("eventId"),
                     "eventName": item.get("eventName"),
                     "eventDate": item.get("eventDate"),
+                    "venue": item.get("venue", ""),
+                    "description": item.get("description", ""),
                     "capacity": capacity,
                     "registeredCount": registered,
                     "status": compute_status(capacity, registered),
